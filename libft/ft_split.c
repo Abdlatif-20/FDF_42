@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:10:02 by aben-nei          #+#    #+#             */
-/*   Updated: 2022/10/30 19:17:51 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/15 05:48:12 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	**ft_split(char const *s, char c)
 		while (s[i] == c)
 			i++;
 		start = i;
-		tab[j] = ft_substr(s, start, word_len(s, c, &i));
+		tab[j] = ft_substr1(s, start, word_len(s, c, &i));
 		if (!tab[j++])
 			check_allocate (tab);
 	}

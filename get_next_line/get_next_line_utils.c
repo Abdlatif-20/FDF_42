@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 20:03:44 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/02/15 02:06:56 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/15 05:56:32 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ size_t	ft_strlen1(char *str, char c)
 	return (len);
 }
 
-char	*ft_strchr1(char *s, char c)
+char	*ft_strchr(char *s, char c)
 {
 	size_t	i;
 
@@ -57,7 +57,7 @@ char	*ft_strchr1(char *s, char c)
 	return (NULL);
 }
 
-char	*ft_strjoin1(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	len_s1;
@@ -76,12 +76,14 @@ char	*ft_strjoin1(char *s1, char *s2)
 		str[i] = s1[i];
 	i = -1;
 	while (s2[++i])
+	{
 		str[len_s1 + i] = s2[i];
+	}
 	str[len_s1 + i] = '\0';
 	return (free(s1), str);
 }
 
-char	*ft_substr1(char *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	i;

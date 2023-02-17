@@ -6,13 +6,13 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:02:25 by aben-nei          #+#    #+#             */
-/*   Updated: 2022/10/30 18:01:57 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/15 05:47:06 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr1(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	i;

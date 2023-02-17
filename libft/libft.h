@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 22:39:27 by aben-nei          #+#    #+#             */
-/*   Updated: 2022/11/01 19:05:43 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/17 02:38:37 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 # include <unistd.h> // use write
 
-# include <stdlib.h> /* use size_t And Malloc */ 
+# include <stdlib.h>
 
 /* Prototype The Function */
 
 //----------------- Part 1 -----------------------------------
-   
+
 int		ft_isalpha(int c);
 int		ft_isdigit(int c );
 int		ft_isalnum(int c);
@@ -36,20 +36,20 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 int		ft_toupper(int ch);
 int		ft_tolower(int ch);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr1(const char *s, int c);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_strnstr(const char *src, char *to_find, size_t len);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 void	*ft_memchr(const void *str, int c, size_t n);
 int		ft_memcmp(const void *str1, const void *str2, size_t n);
-int		ft_atoi(const char *str);
+int		ft_atoi(char *str);
 void	*ft_calloc(size_t n, size_t size);
 char	*ft_strdup(const char *s);
 
 // --------------------- Part 2 ---------------------------------
 
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_substr1(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin1(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);

@@ -6,13 +6,13 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 22:53:02 by aben-nei          #+#    #+#             */
-/*   Updated: 2022/10/30 17:59:28 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/15 05:58:54 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin1(char const *s1, char const *s2)
 {
 	char	*str;
 	size_t	len_s1;

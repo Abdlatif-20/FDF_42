@@ -6,13 +6,13 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 17:35:21 by aben-nei          #+#    #+#             */
-/*   Updated: 2022/10/30 19:49:07 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/17 02:38:28 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int		res;
 	int		sign;

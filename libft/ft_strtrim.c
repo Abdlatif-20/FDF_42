@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 20:25:14 by aben-nei          #+#    #+#             */
-/*   Updated: 2022/10/31 02:25:25 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/15 05:47:49 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return ((char *)s1);
 	start = str_start(s1, set);
 	end = str_end(s1, set);
-	str = ft_substr(s1, start, (end - start) + 1);
+	str = ft_substr1(s1, start, (end - start) + 1);
 	return (str);
 }

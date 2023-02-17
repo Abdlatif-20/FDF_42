@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:31:02 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/02/15 02:02:25 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/17 00:42:57 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,7 @@
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 
-# endif
+void	ft_check_map_is_valid(char **av, int fd);
+int     str_length(char *str);
+
+#endif
