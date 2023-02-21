@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 01:29:28 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/02/17 04:07:30 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/21 15:57:39 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	str_length(char *str)
 	return (len);
 }
 
-void	check_lenght_of_map(char **av, int fd)
+void	check_lenght_of_map(int fd)
 {
 	size_t	len;
 	size_t	len1;
@@ -80,10 +80,11 @@ void	ft_check_map_is_valid(char **av, int fd)
 
 	i = 0;
 	check_name_of_map(av[1], ".fdf");
+	fd = open(av[1], O_RDONLY, 777);
 	if (fd < 0)
 		return (ft_putstr_fd("no such file: ", 1),
 			ft_putendl_fd(av[1], 1), exit(1));
-	check_lenght_of_map(av, fd);
+	check_lenght_of_map(fd);
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -95,4 +96,5 @@ void	ft_check_map_is_valid(char **av, int fd)
 		}
 		str = get_next_line(fd);
 	}
+	close(fd);
 }

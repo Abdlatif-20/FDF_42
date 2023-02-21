@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:31:02 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/02/20 19:24:52 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:48:21 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,33 @@
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 
-typedef struct	s_point
-{
+typedef struct s_point {
 	int		x;
 	int		y;
 }				t_point;
 
-typedef	struct	s_data {
+typedef struct s_data {
 	void	*mlx;
 	void	*win;
+	float	zoom;
 	int		**tab;
+	int		height;
+	int		width;
+	int		move_x;
+	int		move_y;
+	int		steps;
+	float	inc_x;
+	float	inc_y;
+	float	x;
+	float	y;
+	int	key_press;
+	int	key_code;
 }				t_data;
 
-
 void	ft_check_map_is_valid(char **av, int fd);
-int     str_length(char *str);
+int		str_length(char *str);
 int		get_height(char *av, int fd);
 int		get_width(char *av, int fd);
-void	drawing_line(int X1, int Y1, int X2, int Y2, t_data *data);
-void	ft_draw_map(t_data *data, int hight, int width);
+void	drawing_line2(t_point p1, t_point p2, t_data *data);
+void	ft_draw_map(t_data *data);
 #endif

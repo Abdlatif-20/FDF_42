@@ -6,38 +6,11 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:33:16 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/02/20 19:24:30 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:48:04 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	get_width(char *av, int fd)
-{
-	char	*str;
-	int		width;
-
-	fd = open(av, O_RDONLY, 777);
-	str = get_next_line(fd);
-	width = str_length(str);
-	return (close(fd), width);
-}
-
-int	get_height(char *av, int fd)
-{
-	int		height;
-	char	*str;
-
-	fd = open(av, O_RDONLY, 777);
-	height = 0;
-	str = get_next_line(fd);
-	while (str)
-	{
-		height++;
-		str = get_next_line(fd);
-	}
-	return (close(fd), height);
-}
 
 void	fill_map(char *av, int fd, int **map)
 {
@@ -61,13 +34,13 @@ void	fill_map(char *av, int fd, int **map)
 		str = get_next_line(fd);
 		i++;
 	}
+	//free(str);
 	close(fd);
 }
 
 int	**map_allocate(char *av, int fd)
 {
-	char	*str;
-	int **tab;
+	int		**tab;
 	int		i;
 	int		height_len;
 	int		width_len;
@@ -89,21 +62,70 @@ int	**map_allocate(char *av, int fd)
 	return (close(fd), tab);
 }
 
+int	key_hook(int keycode, t_data *data)
+{
+	printf("keycode: %d\n", keycode);
+	if (keycode == 53)
+		exit(0);
+	if (keycode == 69)
+	{
+		data->zoom += 0.1;
+		mlx_clear_window(data->mlx, data->win);
+		ft_draw_map(data);
+	}
+	if (keycode == 78)
+	{
+		data->zoom -= 0.1;
+		mlx_clear_window(data->mlx, data->win);
+		ft_draw_map(data);
+	}
+	if (keycode == 126)
+	{
+		data->move_y -= 10;
+		mlx_clear_window(data->mlx, data->win);
+		ft_draw_map(data);
+	}
+	if (keycode == 125)
+	{
+		data->move_y += 10;
+		mlx_clear_window(data->mlx, data->win);
+		ft_draw_map(data);
+	}
+	if (keycode == 123)
+	{
+		data->move_x -= 10;
+		mlx_clear_window(data->mlx, data->win);
+		ft_draw_map(data);
+	}
+	if (keycode == 124)
+	{
+		data->move_x += 10;
+		mlx_clear_window(data->mlx, data->win);
+		ft_draw_map(data);
+	}
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
-	//int	**tab;
-	int	fd;
+	int		fd;
 	t_data	data;
 
 	if (ac != 2)
 		return (ft_putendl_fd("Usage: ./fdf <filename>", 1), exit(1), 0);
-	fd = open(av[1], O_RDONLY, 777);
+	fd = 0;
+	data.zoom = 1;
+	data.move_x = 0;
+	data.move_y = 0;
 	ft_check_map_is_valid(av, fd);
 	data.tab = map_allocate(av[1], fd);
 	fill_map(av[1], fd, data.tab);
+	data.height = get_height(av[1], fd);
+	data.width = get_width(av[1], fd);
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 1500, 500, "drawing line");
-	ft_draw_map(&data, get_height(av[1], fd), get_width(av[1], fd));
+	data.win = mlx_new_window(data.mlx, 5120 / 2, 2880 / 2, "");
+	ft_draw_map(&data);
+	mlx_hook(data.win, 2, 0, key_hook, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

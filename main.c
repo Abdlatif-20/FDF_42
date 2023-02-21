@@ -1,3 +1,23 @@
+
+void display_map(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < data->height)
+	{
+		j = 0;
+		while (j < data->width)
+		{
+			printf("%d ", data->tab[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	int	**tab;
