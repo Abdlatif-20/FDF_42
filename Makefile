@@ -6,7 +6,7 @@
 #    By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:28:31 by aben-nei          #+#    #+#              #
-#    Updated: 2023/02/26 22:58:58 by aben-nei         ###   ########.fr        #
+#    Updated: 2023/03/01 02:13:34 by aben-nei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ clean:
 	@rm -f $(OBJ)
 
 fclean: clean
-	@make fclean -C libft
-	@rm -f $(NAME)
+	# @make fclean -C libft
+	@rm -f $(NAME) libft.a
 
 re: fclean all
