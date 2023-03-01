@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:31:02 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/02/22 19:59:48 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/01 02:05:34 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,27 @@ typedef struct s_data {
 	char	*addr;
 	void	*mlx;
 	void	*win;
-	float	zoom;
+	double	zoom;
+	int		color;
+	int 	change_color;
 	int		**tab;
 	int		height;
 	int		width;
 	int		move_x;
 	int		move_y;
 	int		steps;
-	float	inc_x;
-	float	inc_y;
-	float	x;
-	float	y;
+	double	inc_x;
+	double	inc_y;
+	double	angle;
+	double	x;
+	double	y;
+	double	rotation;
 	int		c;
 	int		dx;
 	int		dy;
 	int		key_press;
 	int		key_code;
+	int		flag;
 	t_point	point1;
 	t_point	point2;
 }				t_data;
@@ -63,5 +68,6 @@ int		get_height(char *av, int fd);
 int		get_width(char *av, int fd);
 void	drawing_line2(t_point p1, t_point p2, t_data *data);
 void	ft_draw_map(t_data *data);
+void	rotation(t_data *data);
 
 #endif

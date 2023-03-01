@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:33:16 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/02/22 20:52:59 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/01 02:11:58 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,32 @@ int mouse_hook(int event, int x, int y, t_data *data)
     return (0);
 }
 
+// void	rotation(t_data *data)
+// {
+// 	int		i;
+// 	int		j;
+// 	int		x;
+// 	int		y;
+
+// 	i = 0;
+// 	while (i < data->height)
+// 	{
+// 		j = 0;
+// 		while (j < data->width)
+// 		{
+// 			x = data->tab[i][j] * cos(data->angle) - data->tab[i][j] * sin(data->angle);
+// 			y = data->tab[i][j] * sin(data->angle) + data->tab[i][j] * cos(data->angle);
+// 			data->tab[i][j] = x;
+// 			data->tab[i][j] = y;
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
 int	key_hook(int keycode, t_data *data)
 {
-	printf("keycode = %d", keycode);
+	printf("keycode = %d\n", keycode);
 	if (keycode == 53)
 		exit(0);
 	else if (keycode == 69) // zoom in
@@ -180,6 +203,8 @@ int	key_hook(int keycode, t_data *data)
 		data->move_y = 0;
 		data->zoom = 1;
 		data->c = 1;
+		data->color = 16777215;
+		data->flag = 0;
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_clear_window(data->mlx, data->win);
 		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
@@ -187,38 +212,70 @@ int	key_hook(int keycode, t_data *data)
 		ft_draw_map(data);
 		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	}
-	else if (keycode == 15) 
-	{
-		data->point1.angle_x -= 0.8;
-		data->point1.angle_y -= 0.8;
-		data->point2.angle_x -= 0.8;
-		data->point2.angle_y -= 0.8;
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_clear_window(data->mlx, data->win);
-		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
-		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-		ft_draw_map(data);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	}
-	else if (keycode == 14) 
-	{
-		data->point1.angle_x += 0.8;
-		data->point1.angle_y += 0.8;
-		data->point2.angle_x += 0.8;
-		data->point2.angle_y += 0.8;
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_clear_window(data->mlx, data->win);
-		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
-		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-		ft_draw_map(data);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	}
-	else if (keycode == 5)
+	/*------------ rotate------------------*/
+	// else if (keycode == 15) // rotate right
+	// {
+	// 	data->angle += 0.8;
+	// 	rotation(data);
+	// 	mlx_destroy_image(data->mlx, data->img);
+	// 	mlx_clear_window(data->mlx, data->win);
+	// 	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+	// 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	// 	ft_draw_map(data);
+	// 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	// }
+	// else if (keycode == 14) // rotate left
+	// {
+	// 	data->point1.angle_x += 0.8;
+	// 	data->point1.angle_y += 0.8;
+	// 	data->point2.angle_x += 0.8;
+	// 	data->point2.angle_y += 0.8;
+	// 	mlx_destroy_image(data->mlx, data->img);
+	// 	mlx_clear_window(data->mlx, data->win);
+	// 	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+	// 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	// 	ft_draw_map(data);
+	// 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	// }
+	else if (keycode == 17) 
 	{
 		data->point1.x += 1;
-		data->point1.y += 1;
 		data->point2.x += 1;
+		data->point1.y += 1;
 		data->point2.y += 1;
+		mlx_destroy_image(data->mlx, data->img);
+		mlx_clear_window(data->mlx, data->win);
+		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+		ft_draw_map(data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	}
+	if (keycode == 3)
+	{
+		if(data->change_color == 0)
+			data->change_color = 1;
+		else
+			data->change_color = 0;
+		mlx_destroy_image(data->mlx, data->img);
+		mlx_clear_window(data->mlx, data->win);
+		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+		ft_draw_map(data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	}
+	if (keycode == 5) // z-->zoom in
+	{
+		data->c += 1;
+		mlx_destroy_image(data->mlx, data->img);
+		mlx_clear_window(data->mlx, data->win);
+		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+		ft_draw_map(data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	}
+	if (keycode == 4) // z-->zoom out
+	{
+		data->c -= 1;
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_clear_window(data->mlx, data->win);
 		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
@@ -227,12 +284,9 @@ int	key_hook(int keycode, t_data *data)
 		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	}
 	
-	else if (keycode == 17) 
+	if (keycode == 38) // z-->zoom out
 	{
-		data->point1.x += 1;
-		data->point2.x += 1;
-		data->point1.y += 1;
-		data->point2.y += 1;
+		data->flag = 1;
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_clear_window(data->mlx, data->win);
 		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
@@ -258,7 +312,10 @@ int	main(int ac, char **av)
 	data.point1.angle_y = 0.8;
 	data.point2.angle_x = 0.8;
 	data.point2.angle_y = 0.8;
+	data.color = 16777215;
 	data.c = 1;
+	data.change_color = 0;
+	data.flag = 0;
 	ft_check_map_is_valid(av, fd);
 	data.tab = map_allocate(av[1], fd);
 	fill_map(av[1], fd, data.tab);

@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 01:29:28 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/02/21 15:57:39 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/02/26 00:11:57 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	check_name_of_map(char *str, char *find)
 	{
 		while (str[i] != '.')
 			i--;
-		if (str[i] == '.')
+		if (i < 0)
+			return (ft_putstr_fd("no such file: ", 1),
+				ft_putendl_fd(str, 1), exit(1));
+		if (str[i] == '.' && i >= 0)
 		{
 			while (str[i])
 			{

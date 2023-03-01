@@ -6,7 +6,7 @@
 #    By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:28:31 by aben-nei          #+#    #+#              #
-#    Updated: 2023/02/22 19:44:23 by aben-nei         ###   ########.fr        #
+#    Updated: 2023/02/26 22:58:58 by aben-nei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ = $(SRC:.c=.o)
 LIBFT = libft/libft.a
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
-all: $(NAME)
+all: $(NAME) 
 
 $(NAME): $(OBJ)
 	@make -C libft
@@ -29,8 +29,12 @@ $(NAME): $(OBJ)
 %.o: %.c fdf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean:
+# mv : libft/libft.a
+# 	@mv libft/libft.a .
+
+clean_libft:
 	@make clean -C libft
+clean:
 	@rm -f $(OBJ)
 
 fclean: clean
