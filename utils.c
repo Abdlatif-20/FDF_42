@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 01:23:23 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/01 02:00:05 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/02 08:33:59 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,24 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	get_width(char *av, int fd)
+void	get_width_height(char *av, int fd, t_data *data)
 {
 	char	*str;
-	int		width;
-
-	fd = open(av, O_RDONLY, 777);
-	str = get_next_line(fd);
-	width = str_length(str);
-	//free(str);
-	return (close(fd), width);
-}
-
-int	get_height(char *av, int fd)
-{
 	int		height;
-	char	*str;
 
 	fd = open(av, O_RDONLY, 777);
-	height = 0;
 	str = get_next_line(fd);
+	data->width = str_length(str);
+	
+	height = 0;
 	while (str)
 	{
 		height++;
 		str = get_next_line(fd);
+		// free(str);
 	}
 	//free(str);
-	return (close(fd), height);
+	data->height = height;
 }
 
 void get_color(t_data *data, int z1, int z2)
@@ -60,32 +51,41 @@ void get_color(t_data *data, int z1, int z2)
 
 void	drawing_line(t_point p1, t_point p2, t_data *data)
 {
-	int	i;
-	int	z1;
-	int	z2;
-
-	z1 = data->tab[p1.y][p1.x];
-	z2 = data->tab[p2.y][p2.x];
+	int i;
+	// int y1;
+	// int y2;
+	// int x1;
+	// int x2;
+	// int z1;
+	// int z2;
+	p1.z = data->tab[p1.y][p1.x];
+	p2.z = data->tab[p2.y][p2.x];
 	if (data->change_color == 1)
-		get_color(data, z1, z2);
-	z1 = z1*data->c*5;
-	z2 = z2*data->c*5;
-	p1.x *= 20 * data->zoom;
-	p2.x *= 20 * data->zoom;
-	p1.y *= 20 * data->zoom;
-	p2.y *= 20 * data->zoom;
-
+		get_color(data, p1.z, p2.z);
+	p1.z = p1.z*data->c*5;
+	p2.z = p2.z*data->c*5;
+	p1.x *= 15 * data->zoom;
+	p2.x *= 15 * data->zoom;
+	p1.y *= 15 * data->zoom;
+	p2.y *= 15 * data->zoom;
+	/*rotation x*/
+	if (data->flag1 == 1)
+		ft_rotate_x(&p1, &p2, data);
+	/*rotation y*/
+	if (data->flag2 == 1)
+		ft_rotate_y(&p1, &p2, data);
 	if ((data)->flag == 0)
 	{
-		p1.x = (p1.x - p1.y) * cos(data->point1.angle_x);
-		p1.y = (p1.x + p1.y) * cos(data->point1.angle_y) - z1;
-		p2.x = (p2.x - p2.y) * cos(data->point2.angle_x);
-		p2.y = (p2.x + p2.y) * cos(data->point2.angle_y) - z2;
+		p1.x = (p1.x - p1.y) * cos(0.72);
+		p1.y = (p1.x + p1.y) * cos(0.72) - p1.z;
+		p2.x = (p2.x - p2.y) * cos(0.72);
+		p2.y = (p2.x + p2.y) * cos(0.72) - p2.z;
 	}
-	p1.x += 5120 / 4 - (20 * data->width / 2) + data->move_x;
-	p2.x += 5120 / 4 - (20 * data->width / 2) + data->move_x;
-	p1.y += 2880 / 4 - (20 * data->height / 2) + data->move_y;
-	p2.y += 2880 / 4 - (20 * data->height / 2) + data->move_y;
+	
+	p1.x += 5120 / 4 - (15 * data->width / 2) + data->move_x;
+	p2.x += 5120 / 4 - (15 * data->width / 2) + data->move_x;
+	p1.y += 2880 / 4 - (15 * data->height / 2) + data->move_y;
+	p2.y += 2880 / 4 - (15 * data->height / 2) + data->move_y;
 	data->x = p1.x;
 	data->y = p1.y;
 	data->dx = p2.x - p1.x;
