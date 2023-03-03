@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_rotate_x_bonus.c                                :+:      :+:    :+:   */
@@ -6,11 +6,11 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 08:23:25 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 00:20:44 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:06:33 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	ft_rotate_x(t_point *p1, t_point *p2, t_data *data)
 {
@@ -24,11 +24,11 @@ void	ft_rotate_x(t_point *p1, t_point *p2, t_data *data)
 	z1 = p1->z;
 	z2 = p2->z;
 	p1->x = p1->x;
-	p1->y = y1 * cos(data->angle_x) - z1 * sin(data->angle_x);
-	p1->z = y1 * sin(data->angle_x) + z1 * cos(data->angle_x);
+	p1->y = y1 * cos(data->angle_x * data->speed_up) - z1 * sin(data->angle_x * data->speed_up);
+	p1->z = y1 * sin(data->angle_x * data->speed_up) + z1 * cos(data->angle_x * data->speed_up);
 	p2->x = p2->x;
-	p2->y = y2 * cos(data->angle_x) - z2 * sin(data->angle_x);
-	p2->z = y2 * sin(data->angle_x) + z2 * cos(data->angle_x);
+	p2->y = y2 * cos(data->angle_x * data->speed_up) - z2 * sin(data->angle_x * data->speed_up);
+	p2->z = y2 * sin(data->angle_x * data->speed_up) + z2 * cos(data->angle_x * data->speed_up);
 }
 
 void	rotate_x(t_data *data)

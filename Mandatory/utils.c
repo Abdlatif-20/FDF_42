@@ -6,11 +6,17 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 01:23:23 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 00:13:11 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:13:46 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "../Bonus/fdf_bonus.h"
+
+int	ft_close(void)
+{
+	exit(0);
+}
 
 void	get_width_height(char *av, int fd, t_data *data)
 {

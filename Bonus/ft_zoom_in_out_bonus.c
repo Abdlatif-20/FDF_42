@@ -6,11 +6,11 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:56:30 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 00:18:19 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:11:58 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	ft_zoom(int keycode, t_data *data)
 {

@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "ios": "c",
-        "complex": "c"
+        "complex": "c",
+        "fdf.h": "c",
+        "fdf_bonus.h": "c"
     }
 }

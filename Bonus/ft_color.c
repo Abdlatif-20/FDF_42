@@ -6,11 +6,11 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 23:01:49 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 00:12:05 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:23:07 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	ft_color(t_data *data)
 {

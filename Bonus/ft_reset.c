@@ -6,11 +6,11 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:54:22 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 00:19:05 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/03 18:54:05 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	ft_reset(t_data *data)
 {
@@ -25,7 +25,8 @@ void	ft_reset(t_data *data)
 	data->flag2 = 0;
 	data->angle_x = 0;
 	data->angle_y = 0;
-	data->change_speed = 1.0;
+	data->speed_up = 1.0;
+	data->flag_speed = 1;
 	mlx_clear_window(data->mlx, data->win);
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);

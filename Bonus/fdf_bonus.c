@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fdf_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 00:33:16 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 00:33:47 by aben-nei         ###   ########.fr       */
+/*   Created: 2023/03/03 02:45:14 by aben-nei          #+#    #+#             */
+/*   Updated: 2023/03/03 19:14:12 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	ft_initialized(t_data *data)
 {
@@ -25,7 +25,13 @@ void	ft_initialized(t_data *data)
 	data->flag2 = 0;
 	data->angle_x = 0;
 	data->angle_y = 0;
-	data->change_speed = 1.0;
+	data->speed_up = 1.0;
+	data->flag_speed = 1;
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, 5120 / 2, 2880 / 2, "fdf");
+	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+			&data->line_length, &data->endian);
 }
 
 void	fill_map(char *av, int fd, int **map)
@@ -81,24 +87,18 @@ int	main(int ac, char **av)
 
 	(void)av;
 	if (ac != 2)
-		return (ft_putendl_fd("Usage: ./fdf <filename>", 1), exit(1), 0);
+		return (ft_putendl_fd("Usage: ./fdf_bonus <filename>", 1), exit(1), 0);
 	fd = 0;
 	ft_check_map_is_valid(av, fd);
 	ft_initialized(&data);
 	get_width_height(av[1], fd, &data);
-	printf("width = %d\n", data.width);
-	printf("height = %d\n", data.height);
 	data.tab = map_allocate(av[1], fd, &data);
 	fill_map(av[1], fd, data.tab);
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 5120 / 2, 2880 / 2, "fdf");
-	data.img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
-			&data.line_length, &data.endian);
 	ft_draw_map(data.point1, data.point1, &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_hook(data.win, 2, 0, key_hook, &data);
 	mlx_mouse_hook(data.win, mouse_hook, &data);
+	mlx_hook(data.win, 17, 0, ft_close, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

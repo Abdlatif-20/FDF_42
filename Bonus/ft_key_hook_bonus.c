@@ -6,11 +6,11 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:29:31 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 00:17:19 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:29:10 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	key_hook2(t_data *data)
 {
@@ -56,7 +56,16 @@ int	key_hook(int keycode, t_data *data)
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 1)
-		data->change_speed += 1.5;
+	{
+		data->speed_up += 0.5;
+		data->flag_speed = 1;
+	}
+	if (keycode == 17)
+	{
+		if (data->speed_up > 0.5)
+			data->speed_up -= 0.5;
+			data->flag_speed = 0;
+	}
 	if ((keycode >= 123 && keycode <= 126) || keycode == 0
 		|| keycode == 2 || keycode == 6 || keycode == 13)
 		ft_translate(keycode, data);
