@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:31:02 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/02 08:32:33 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/03 01:21:32 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ typedef struct s_data {
 	void	*win;
 	double	zoom;
 	int		color;
-	int 	change_color;
+	int		change_color;
 	int		**tab;
+	double	change_speed;
 	int		height;
 	int		width;
 	int		move_x;
@@ -68,8 +69,16 @@ void	ft_check_map_is_valid(char **av, int fd);
 int		str_length(char *str);
 void	get_width_height(char *av, int fd, t_data *data);
 void	drawing_line(t_point p1, t_point p2, t_data *data);
-void	ft_draw_map(t_data *data);
-void    ft_rotate_x(t_point *p1, t_point *p2, t_data *data);
-void    ft_rotate_y(t_point *p1, t_point *p2, t_data *data);
-
+void	ft_draw_map(t_point p1, t_point p2, t_data *data);
+void	drawing_line(t_point p1, t_point p2, t_data *data);
+void	ft_rotate_x(t_point *p1, t_point *p2, t_data *data);
+void	ft_rotate_y(t_point *p1, t_point *p2, t_data *data);
+int		mouse_hook(int event, int x, int y, t_data *data);
+int		key_hook(int keycode, t_data *data);
+void	ft_translate(int keycode, t_data *data);
+void	ft_zoom(int keycode, t_data *data);
+void	ft_reset(t_data *data);
+void	rotate_x(t_data *data);
+void	rotate_y(t_data *data);
+void	ft_color(t_data *data);
 #endif
