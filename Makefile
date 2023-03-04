@@ -6,14 +6,16 @@
 #    By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:28:31 by aben-nei          #+#    #+#              #
-#    Updated: 2023/03/03 16:07:46 by aben-nei         ###   ########.fr        #
+#    Updated: 2023/03/04 00:53:37 by aben-nei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
+NAME_BNS = fdf_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Imlx -Ofast
-
+RM = rm -f
+HDR = Mandatory/fdf.h Bonus/fdf_bonus.h
 # -fsanitize=address -g -Ofast
 SRC = Mandatory/fdf.c Mandatory/utils.c Mandatory/parsine.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 	Bonus/ft_rotate_x_bonus.c Bonus/ft_rotate_y_bonus.c Mandatory/dda_algorithm.c  libft/ft_strlen.c libft/ft_strncmp.c \
@@ -30,66 +32,62 @@ OBJ_BNS = $(SRC_BNS:.c=.o)
 LIBFT = libft/libft.a
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
-all: $(NAME) 
+all: banner $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME)
 	@echo ""
 	@for i in {1..40}; do \
-	printf "\033[1;36m!\033[0m" $$i; \
+	printf "\033[1;36m|\033[0m" $$i; \
 	sleep 0.03; \
 	done
 	@echo ""
 
-%.o: %.c fdf.h
+bonus: banner_bns $(NAME_BNS)
+
+$(NAME_BNS): $(OBJ_BNS)
+	$(CC) $(CFLAGS) $(OBJ_BNS) $(MLXFLAGS) -o $(NAME_BNS)
+	@echo ""
+	@for i in {1..40}; do \
+	printf "\033[1;36m|\033[0m" $$i; \
+	sleep 0.03; \
+	done
+	@echo ""
+
+%.o: %.c $(HDR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-bonus: banner_bns $(OBJ_BNS)
-	$(CC) $(CFLAGS) $(SRC_BNS) $(MLXFLAGS) -o $(NAME)
+fclean: clean
+	$(RM) $(NAME) $(NAME_BNS)
 
 clean:
-	rm -f $(OBJ) $(OBJ_BNS)
+	$(RM) $(OBJ) $(OBJ_BNS)
 
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
+re: fclean all bonus
 
 
-# banner:
-# 	@echo "\n"
-# 	@echo " \033[38;5;117m\
-# 			 ███████╗██████╗░███████╗\n \
-# 			 ██╔════╝██╔══██╗██╔════╝\n \
-# 			 █████╗  ██║  ██║█████╗  \n \
-# 			 ██╔══╝  ██║  ██║██╔══╝  \n \
-# 			 ██║     ██████╔╝██║     \n \
-# 			 ╚═╝     ╚═════╝ ╚═╝		\n \
-# 			\033[0m"
-# 	@echo "----------------------- Compiling FDF (Mandatory)...-----------------------"
-# 	@echo "\n"
-
-
-# banner:
-# 	@echo "\033[0;36m\
-# 	                  _    _      _   _  _____ _   _
-# 	                 | |  | |    | | | |/ ____| \ | |
-# 	                 | |  | | ___| |_| | |    |  \| |
-# 	                 | |/\| |/ _ \ __| | |    | . \` |
-# 	                 \  /\  /  __/ |_| | |____| |\  |
-# 	                  \/  \/ \___|\__|_|\_____|_| \_|
-# 	\033[0m"
-
+banner:
+	@echo "\n"
+	@echo " \033[38;5;117m\
+			 ███████╗██████╗░███████╗\n \
+			 ██╔════╝██╔══██╗██╔════╝\n \
+			 █████╗  ██║  ██║█████╗  \n \
+			 ██╔══╝  ██║  ██║██╔══╝  \n \
+			 ██║     ██████╔╝██║     \n \
+			 ╚═╝     ╚═════╝ ╚═╝		\n \
+			\033[0m"
+	@echo "----------------------- Compiling FDF (Mandatory)...-----------------------"
+	@echo "\n"
 
 banner_bns:
 	@echo "\n"
-	@echo " \
-				███████╗██████╗░███████╗\n \
-				██╔════╝██╔══██╗██╔════╝\n \
-				█████╗  ██║  ██║█████╗  \n \
-				██╔══╝  ██║  ██║██╔══╝  \n \
-				██║     ██████╔╝██║     \n \
-				╚═╝     ╚═════╝ ╚═╝		\n \
-	"
+	@echo " \033[38;5;117m\
+			 ███████╗██████╗░███████╗\n \
+			 ██╔════╝██╔══██╗██╔════╝\n \
+			 █████╗  ██║  ██║█████╗  \n \
+			 ██╔══╝  ██║  ██║██╔══╝  \n \
+			 ██║     ██████╔╝██║     \n \
+			 ╚═╝     ╚═════╝ ╚═╝		\n \
+			\033[0m"
 	@echo "----------------------- Compiling FDF (Bonus)...-----------------------"
 	@echo "\n"
