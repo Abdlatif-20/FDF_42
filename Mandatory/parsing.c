@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsine.c                                          :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 01:29:28 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 16:13:36 by aben-nei         ###   ########.fr       */
+/*   Created: 2023/03/05 19:50:53 by aben-nei          #+#    #+#             */
+/*   Updated: 2023/03/05 19:53:30 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ void	check_lenght_of_map(int fd)
 	char	*str;
 
 	str = get_next_line(fd);
+	if (str[0] == '\n')
+		return (ft_putendl_fd("Found empty line.", 1), exit(1));
 	len = str_length(str);
 	str = get_next_line(fd);
 	while (str)
 	{
 		len1 = str_length(str);
 		if (len > len1)
-			return (ft_putendl_fd("Found wrong line length.", 1), exit(1));
+			return (ft_putendl_fd("Found empty line.", 1), exit(1));
 		str = get_next_line(fd);
 	}
 }

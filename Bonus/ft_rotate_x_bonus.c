@@ -1,12 +1,12 @@
-/************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_rotate_x_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 08:23:25 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 19:06:33 by aben-nei         ###   ########.fr       */
+/*   Created: 2023/03/05 20:04:55 by aben-nei          #+#    #+#             */
+/*   Updated: 2023/03/05 20:08:17 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	ft_rotate_x(t_point *p1, t_point *p2, t_data *data)
 	z1 = p1->z;
 	z2 = p2->z;
 	p1->x = p1->x;
-	p1->y = y1 * cos(data->angle_x * data->speed_up) - z1 * sin(data->angle_x * data->speed_up);
-	p1->z = y1 * sin(data->angle_x * data->speed_up) + z1 * cos(data->angle_x * data->speed_up);
+	p1->y = y1 * cos(data->angle_x) - z1 * sin(data->angle_x);
+	p1->z = y1 * sin(data->angle_x) + z1 * cos(data->angle_x);
 	p2->x = p2->x;
-	p2->y = y2 * cos(data->angle_x * data->speed_up) - z2 * sin(data->angle_x * data->speed_up);
-	p2->z = y2 * sin(data->angle_x * data->speed_up) + z2 * cos(data->angle_x * data->speed_up);
+	p2->y = y2 * cos(data->angle_x) - z2 * sin(data->angle_x);
+	p2->z = y2 * sin(data->angle_x) + z2 * cos(data->angle_x);
 }
 
 void	rotate_x(t_data *data)
 {
 	data->angle_x += 0.1;
-	data->flag1 = 1;
+	data->flag_x = 1;
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_clear_window(data->mlx, data->win);
 	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);

@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:47:27 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 19:26:22 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:26:16 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,7 @@ void	ft_translate(int keycode, t_data *data)
 	}
 	else if (keycode == 125 || keycode == 6)
 	{
-		if (data->flag_speed == 1)
-			data->move_y += 10 * data->speed_up;
-		else
-			data->move_y += 10 / data->speed_up;
-			
+		data->move_y += 10 * data->speed_up;
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_clear_window(data->mlx, data->win);
 		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);

@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 02:45:14 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 19:14:12 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:08:00 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void	ft_initialized(t_data *data)
 	data->color = 16777215;
 	data->c = 1;
 	data->change_color = 0;
-	data->flag = 0;
-	data->flag1 = 0;
-	data->flag2 = 0;
+	data->flag_j = 0;
+	data->flag_x = 0;
+	data->flag_y = 0;
 	data->angle_x = 0;
 	data->angle_y = 0;
 	data->speed_up = 1.0;
-	data->flag_speed = 1;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, 5120 / 2, 2880 / 2, "fdf");
 	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
@@ -85,7 +84,6 @@ int	main(int ac, char **av)
 	int		fd;
 	t_data	data;
 
-	(void)av;
 	if (ac != 2)
 		return (ft_putendl_fd("Usage: ./fdf_bonus <filename>", 1), exit(1), 0);
 	fd = 0;

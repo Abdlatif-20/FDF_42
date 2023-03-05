@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:29:31 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 19:29:10 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:06:22 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	key_hook2(t_data *data)
 {
-	data->flag = 1;
+	if (data->flag_j == 1)
+		data->flag_j = 0;
+	else
+		data->flag_j = 1;
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_clear_window(data->mlx, data->win);
 	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
@@ -56,16 +59,7 @@ int	key_hook(int keycode, t_data *data)
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 1)
-	{
-		data->speed_up += 0.5;
-		data->flag_speed = 1;
-	}
-	if (keycode == 17)
-	{
-		if (data->speed_up > 0.5)
-			data->speed_up -= 0.5;
-			data->flag_speed = 0;
-	}
+		data->speed_up += 1.5;
 	if ((keycode >= 123 && keycode <= 126) || keycode == 0
 		|| keycode == 2 || keycode == 6 || keycode == 13)
 		ft_translate(keycode, data);

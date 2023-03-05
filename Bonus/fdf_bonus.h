@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:56:36 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/04 00:52:23 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:07:32 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,9 @@ typedef struct s_data {
 	int		dy;
 	int		key_press;
 	int		key_code;
-	int		flag;
-	int		flag1;
-	int		flag2;
-	int		flag_speed;
+	int		flag_j;
+	int		flag_x;
+	int		flag_y;
 	t_point	point1;
 	t_point	point2;
 }				t_data;

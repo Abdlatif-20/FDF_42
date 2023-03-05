@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 23:57:57 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/04 00:43:47 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:07:51 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	get_color(t_data *data, int z1, int z2)
 
 void	drawing_line1(t_point p1, t_point p2, t_data *data)
 {
-	if (data->flag1 == 1)
+	if (data->flag_x == 1)
 		ft_rotate_x(&p1, &p2, data);
-	if (data->flag2 == 1)
+	if (data->flag_y == 1)
 		ft_rotate_y(&p1, &p2, data);
-	if (data->flag == 0)
+	if (data->flag_j == 0)
 	{
 		p1.x = (p1.x - p1.y) * cos(0.72);
 		p1.y = (p1.x + p1.y) * cos(0.72) - p1.z;

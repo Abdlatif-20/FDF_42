@@ -6,23 +6,23 @@
 #    By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:28:31 by aben-nei          #+#    #+#              #
-#    Updated: 2023/03/04 00:53:37 by aben-nei         ###   ########.fr        #
+#    Updated: 2023/03/05 19:55:07 by aben-nei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 NAME_BNS = fdf_bonus
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Imlx -Ofast
+CFLAGS = -Wall -Wextra -Werror -Ofast
 RM = rm -f
 HDR = Mandatory/fdf.h Bonus/fdf_bonus.h
 # -fsanitize=address -g -Ofast
-SRC = Mandatory/fdf.c Mandatory/utils.c Mandatory/parsine.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+SRC = Mandatory/fdf.c Mandatory/utils.c Mandatory/parsing.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 	Bonus/ft_rotate_x_bonus.c Bonus/ft_rotate_y_bonus.c Mandatory/dda_algorithm.c  libft/ft_strlen.c libft/ft_strncmp.c \
 	libft/ft_atoi.c libft/ft_calloc.c libft/ft_strdup.c libft/ft_split.c libft/ft_putchar_fd.c \
 	libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_strlcpy.c libft/ft_substr.c libft/ft_bzero.c libft/ft_memset.c
 
-SRC_BNS = Bonus/fdf_bonus.c Mandatory/utils.c Mandatory/parsine.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+SRC_BNS = Bonus/fdf_bonus.c Mandatory/utils.c Mandatory/parsing.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 	Bonus/ft_rotate_x_bonus.c Bonus/ft_rotate_y_bonus.c Bonus/ft_key_hook_bonus.c Bonus/mouse_hooks_bonus.c Bonus/ft_translate_bonus.c \
 	Bonus/ft_zoom_in_out_bonus.c Bonus/ft_reset.c Bonus/ft_color.c Mandatory/dda_algorithm.c libft/ft_strlen.c libft/ft_strncmp.c libft/ft_atoi.c \
 	libft/ft_calloc.c libft/ft_strdup.c libft/ft_split.c libft/ft_putchar_fd.c libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_strlcpy.c \
