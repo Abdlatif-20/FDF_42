@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:29:31 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/05 20:06:22 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:02:24 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	key_hook2(t_data *data)
 {
-	if (data->flag_j == 1)
-		data->flag_j = 0;
+	if (data->flag_projection == 1)
+		data->flag_projection = 0;
 	else
-		data->flag_j = 1;
+		data->flag_projection = 1;
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_clear_window(data->mlx, data->win);
-	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+	data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	ft_draw_map(data->point2, data->point2, data);
@@ -31,10 +31,10 @@ void	key_hook1(int keycode, t_data *data)
 {
 	if (keycode == 5)
 	{
-		data->c += 1;
+		data->zoom_z += 1;
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_clear_window(data->mlx, data->win);
-		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+		data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 				&data->line_length, &data->endian);
 		ft_draw_map(data->point2, data->point2, data);
@@ -42,10 +42,10 @@ void	key_hook1(int keycode, t_data *data)
 	}
 	else if (keycode == 4)
 	{
-		data->c -= 1;
+		data->zoom_z -= 1;
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_clear_window(data->mlx, data->win);
-		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+		data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 				&data->line_length, &data->endian);
 		ft_draw_map(data->point2, data->point2, data);
@@ -55,7 +55,7 @@ void	key_hook1(int keycode, t_data *data)
 
 int	key_hook(int keycode, t_data *data)
 {
-	printf("keycode = %d\n", keycode);
+	printf("%d\n", keycode);
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 1)

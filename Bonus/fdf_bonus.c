@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 02:45:14 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/05 20:08:00 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:09:09 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	ft_initialized(t_data *data)
 	data->move_x = 0;
 	data->move_y = 0;
 	data->color = 16777215;
-	data->c = 1;
+	data->zoom_z = 1;
 	data->change_color = 0;
-	data->flag_j = 0;
+	data->flag_projection = 0;
 	data->flag_x = 0;
 	data->flag_y = 0;
 	data->angle_x = 0;
@@ -33,32 +33,6 @@ void	ft_initialized(t_data *data)
 			&data->line_length, &data->endian);
 }
 
-void	fill_map(char *av, int fd, int **map)
-{
-	char	*str;
-	char	**tab;
-	int		i;
-	int		j;
-
-	fd = open(av, O_RDONLY, 777);
-	str = get_next_line(fd);
-	i = 0;
-	while (str)
-	{
-		j = 0;
-		tab = ft_split(str, ' ');
-		while (tab[j])
-		{
-			map[i][j] = ft_atoi(tab[j]);
-			j++;
-		}
-		str = get_next_line(fd);
-		i++;
-	}
-	free(str);
-	close(fd);
-}
-
 int	**map_allocate(char *av, int fd, t_data *data)
 {
 	int		**tab;
@@ -66,12 +40,12 @@ int	**map_allocate(char *av, int fd, t_data *data)
 
 	fd = open(av, O_RDONLY, 777);
 	i = 0;
-	tab = (int **)ft_calloc(sizeof(int *), data->height + 1);
+	tab = (int **)ft_calloc(sizeof(int *), data->height);
 	if (!tab)
 		return (0);
 	while (i < data->height)
 	{
-		tab[i] = (int *)ft_calloc(sizeof(int), data->width + 1);
+		tab[i] = (int *)ft_calloc(sizeof(int), data->width);
 		if (!tab[i])
 			return (0);
 		i++;
@@ -85,13 +59,13 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (ac != 2)
-		return (ft_putendl_fd("Usage: ./fdf_bonus <filename>", 1), exit(1), 0);
+		return (ft_putendl_fd("Usage: ./fdf_bonus <filename>", 2), exit(1), 0);
 	fd = 0;
-	ft_check_map_is_valid(av, fd);
+	ft_check_map_is_valid(av, fd, &data);
 	ft_initialized(&data);
-	get_width_height(av[1], fd, &data);
 	data.tab = map_allocate(av[1], fd, &data);
 	fill_map(av[1], fd, data.tab);
+	printf("width = %d, height = %d\n", data.width, data.height);
 	ft_draw_map(data.point1, data.point1, &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_hook(data.win, 2, 0, key_hook, &data);

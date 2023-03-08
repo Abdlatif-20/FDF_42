@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:10:02 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 00:43:16 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:10:48 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ char	**ft_split(char const *s, char c)
 		if (!tab[j++])
 			check_allocate (tab);
 	}
-	return (tab);
+	return (free((char *)s), tab);
 }

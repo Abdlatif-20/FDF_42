@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:56:36 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/05 20:07:32 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:01:04 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,21 @@ typedef struct s_data {
 	double	x;
 	double	y;
 	double	rotation;
-	int		c;
+	int		zoom_z;
 	int		dx;
 	int		dy;
 	int		key_press;
 	int		key_code;
-	int		flag_j;
+	int		flag_projection;
 	int		flag_x;
 	int		flag_y;
 	t_point	point1;
 	t_point	point2;
 }				t_data;
 
-void	ft_check_map_is_valid(char **av, int fd);
+void	ft_check_map_is_valid(char **av, int fd, t_data *data);
+void	fill_map(char *av, int fd, int **map);
 int		str_length(char *str);
-void	get_width_height(char *av, int fd, t_data *data);
 void	drawing_line(t_point p1, t_point p2, t_data *data);
 void	ft_draw_map(t_point p1, t_point p2, t_data *data);
 void	drawing_line(t_point p1, t_point p2, t_data *data);
@@ -82,4 +82,5 @@ void	rotate_x(t_data *data);
 void	rotate_y(t_data *data);
 void	ft_color(t_data *data);
 int		ft_close(void);
+void	free_tab(char **tab);
 #endif

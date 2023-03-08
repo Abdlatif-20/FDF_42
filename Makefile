@@ -6,7 +6,7 @@
 #    By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:28:31 by aben-nei          #+#    #+#              #
-#    Updated: 2023/03/05 19:55:07 by aben-nei         ###   ########.fr        #
+#    Updated: 2023/03/08 18:57:12 by aben-nei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,15 @@ CFLAGS = -Wall -Wextra -Werror -Ofast
 RM = rm -f
 HDR = Mandatory/fdf.h Bonus/fdf_bonus.h
 # -fsanitize=address -g -Ofast
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+BLUE = \033[0;34m
+PURPLE = \033[0;35m
+CYAN = \033[0;36m
+WHITE = \033[0;37m
+RESET = \033[0m
+NC='\033[0m'
 SRC = Mandatory/fdf.c Mandatory/utils.c Mandatory/parsing.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 	Bonus/ft_rotate_x_bonus.c Bonus/ft_rotate_y_bonus.c Mandatory/dda_algorithm.c  libft/ft_strlen.c libft/ft_strncmp.c \
 	libft/ft_atoi.c libft/ft_calloc.c libft/ft_strdup.c libft/ft_split.c libft/ft_putchar_fd.c \
@@ -35,33 +44,24 @@ MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 all: banner $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME)
-	@echo ""
-	@for i in {1..40}; do \
-	printf "\033[1;36m|\033[0m" $$i; \
-	sleep 0.03; \
-	done
-	@echo ""
+	@$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME)
+	@echo "\033[1;32mCreating\033[0m" $@ "\033[1;32m...\033[0m"
 
 bonus: banner_bns $(NAME_BNS)
 
 $(NAME_BNS): $(OBJ_BNS)
-	$(CC) $(CFLAGS) $(OBJ_BNS) $(MLXFLAGS) -o $(NAME_BNS)
-	@echo ""
-	@for i in {1..40}; do \
-	printf "\033[1;36m|\033[0m" $$i; \
-	sleep 0.03; \
-	done
-	@echo ""
+	@$(CC) $(CFLAGS) $(OBJ_BNS) $(MLXFLAGS) -o $(NAME_BNS)
+	@echo "\033[1;32mCreating\033[0m" $@ "\033[1;32m...\033[0m"
 
 %.o: %.c $(HDR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "\033[1;32mCompiling\033[0m" $< "\033[1;32m...\033[0m"
 fclean: clean
-	$(RM) $(NAME) $(NAME_BNS)
+	@$(RM) $(NAME) $(NAME_BNS)
+	@echo "\033[1;31mDeleting\033[0m" $(NAME) $(NAME_BNS) "\033[1;31m...\033[0m"
 
 clean:
-	$(RM) $(OBJ) $(OBJ_BNS)
+	@$(RM) $(OBJ) $(OBJ_BNS)
 
 re: fclean all bonus
 
@@ -69,12 +69,12 @@ re: fclean all bonus
 banner:
 	@echo "\n"
 	@echo " \033[38;5;117m\
-			 ███████╗██████╗░███████╗\n \
-			 ██╔════╝██╔══██╗██╔════╝\n \
-			 █████╗  ██║  ██║█████╗  \n \
-			 ██╔══╝  ██║  ██║██╔══╝  \n \
-			 ██║     ██████╔╝██║     \n \
-			 ╚═╝     ╚═════╝ ╚═╝		\n \
+			       ███████╗██████╗░███████╗\n \
+			       ██╔════╝██╔══██╗██╔════╝\n \
+			       █████╗  ██║  ██║█████╗  \n \
+			       ██╔══╝  ██║  ██║██╔══╝  \n \
+			       ██║     ██████╔╝██║     \n \
+			       ╚═╝     ╚═════╝ ╚═╝		\n \
 			\033[0m"
 	@echo "----------------------- Compiling FDF (Mandatory)...-----------------------"
 	@echo "\n"
@@ -82,12 +82,12 @@ banner:
 banner_bns:
 	@echo "\n"
 	@echo " \033[38;5;117m\
-			 ███████╗██████╗░███████╗\n \
-			 ██╔════╝██╔══██╗██╔════╝\n \
-			 █████╗  ██║  ██║█████╗  \n \
-			 ██╔══╝  ██║  ██║██╔══╝  \n \
-			 ██║     ██████╔╝██║     \n \
-			 ╚═╝     ╚═════╝ ╚═╝		\n \
+			       ███████╗██████╗░███████╗\n \
+			       ██╔════╝██╔══██╗██╔════╝\n \
+			       █████╗  ██║  ██║█████╗  \n \
+			       ██╔══╝  ██║  ██║██╔══╝  \n \
+			       ██║     ██████╔╝██║     \n \
+			       ╚═╝     ╚═════╝ ╚═╝		\n \
 			\033[0m"
 	@echo "----------------------- Compiling FDF (Bonus)...-----------------------"
 	@echo "\n"

@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:31:02 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/04 00:49:47 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:23:57 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 
-void	ft_check_map_is_valid(char **av, int fd);
+void	ft_check_map_is_valid(char **av, int fd, t_data *data);
 int		str_length(char *str);
-void	get_width_height(char *av, int fd, t_data *data);
 void	drawing_line(t_point p1, t_point p2, t_data *data);
 void	ft_draw_map(t_point p1, t_point p2, t_data *data);
 void	drawing_line(t_point p1, t_point p2, t_data *data);

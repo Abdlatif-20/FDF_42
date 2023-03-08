@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 19:50:53 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/05 19:53:30 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:22:38 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,31 @@ int	str_length(char *str)
 	return (len);
 }
 
-void	check_lenght_of_map(int fd)
+void	check_lenght_of_map(int fd, t_data	*data)
 {
 	size_t	len;
 	size_t	len1;
+	int		height;
 	char	*str;
 
 	str = get_next_line(fd);
 	if (str[0] == '\n')
-		return (ft_putendl_fd("Found empty line.", 1), exit(1));
+		return (ft_putendl_fd("Found empty line.", 2), exit(1));
 	len = str_length(str);
+	data->width = len;
+	free(str);
 	str = get_next_line(fd);
+	height = 1;
 	while (str)
 	{
+		height++;
 		len1 = str_length(str);
 		if (len > len1)
-			return (ft_putendl_fd("Found empty line.", 1), exit(1));
+			return (ft_putendl_fd("Found empty line.", 2), exit(1));
+		free(str);
 		str = get_next_line(fd);
 	}
+	data->height = height;
 }
 
 void	check_name_of_map(char *str, char *find)
@@ -62,15 +69,13 @@ void	check_name_of_map(char *str, char *find)
 		while (str[i] != '.')
 			i--;
 		if (i < 0)
-			return (ft_putstr_fd("no such file: ", 1),
-				ft_putendl_fd(str, 1), exit(1));
+			return (ft_putendl_fd("Wrong file extension.", 2), exit(1));
 		if (str[i] == '.' && i >= 0)
 		{
 			while (str[i])
 			{
 				if (str[i] != find[j])
-					return (ft_putstr_fd("no such file: ", 1),
-						ft_putendl_fd(str, 1), exit(1));
+					return (ft_putendl_fd("Wrong file extension.", 2), exit(1));
 				i++;
 				j++;
 			}
@@ -78,7 +83,7 @@ void	check_name_of_map(char *str, char *find)
 	}
 }
 
-void	ft_check_map_is_valid(char **av, int fd)
+void	ft_check_map_is_valid(char **av, int fd, t_data *data)
 {
 	int		i;
 
@@ -86,8 +91,8 @@ void	ft_check_map_is_valid(char **av, int fd)
 	check_name_of_map(av[1], ".fdf");
 	fd = open(av[1], O_RDONLY, 777);
 	if (fd < 0)
-		return (ft_putstr_fd("no such file: ", 1),
-			ft_putendl_fd(av[1], 1), exit(1));
-	check_lenght_of_map(fd);
+		return (ft_putstr_fd("no such file: ", 2),
+			ft_putendl_fd(av[1], 2), exit(1));
+	check_lenght_of_map(fd, data);
 	close(fd);
 }

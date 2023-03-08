@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 23:57:57 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/05 20:07:51 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:01:13 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void	get_color(t_data *data, int z1, int z2)
 {
-	if (z1 != 0 || z2 != 0)
+	(void)z2;
+	if (z1 != 0)
 		data->color = 0x0085FF;
 	else
 		data->color = 0x00FFFFFF;
@@ -34,12 +35,12 @@ void	drawing_line1(t_point p1, t_point p2, t_data *data)
 		ft_rotate_x(&p1, &p2, data);
 	if (data->flag_y == 1)
 		ft_rotate_y(&p1, &p2, data);
-	if (data->flag_j == 0)
+	if (data->flag_projection == 0)
 	{
-		p1.x = (p1.x - p1.y) * cos(0.72);
-		p1.y = (p1.x + p1.y) * cos(0.72) - p1.z;
-		p2.x = (p2.x - p2.y) * cos(0.72);
-		p2.y = (p2.x + p2.y) * cos(0.72) - p2.z;
+		p1.x = (p1.x - p1.y) * cos(0.8);
+		p1.y = (p1.x + p1.y) * cos(0.8) - p1.z;
+		p2.x = (p2.x - p2.y) * cos(0.8);
+		p2.y = (p2.x + p2.y) * cos(0.8) - p2.z;
 	}
 	p1.x += 5120 / 4 - (15 * data->width / 2) + data->move_x;
 	p2.x += 5120 / 4 - (15 * data->width / 2) + data->move_x;
@@ -63,15 +64,15 @@ void	drawing_line(t_point p1, t_point p2, t_data *data)
 	p2.z = data->tab[p2.y][p2.x];
 	if (data->change_color == 1)
 		get_color(data, p1.z, p2.z);
-	p1.z = p1.z * data->c * 5;
-	p2.z = p2.z * data->c * 5;
+	p1.z = p1.z * data->zoom_z * 5;
+	p2.z = p2.z * data->zoom_z * 5;
 	p1.x *= 15 * data->zoom;
 	p2.x *= 15 * data->zoom;
 	p1.y *= 15 * data->zoom;
 	p2.y *= 15 * data->zoom;
 	drawing_line1(p1, p2, data);
-	data->inc_x = (float)data->dx / (float)data->steps;
-	data->inc_y = (float)data->dy / (float)data->steps;
+	data->inc_x = (double)data->dx / (double)data->steps;
+	data->inc_y = (double)data->dy / (double)data->steps;
 	i = 0;
 	while (i < data->steps)
 	{

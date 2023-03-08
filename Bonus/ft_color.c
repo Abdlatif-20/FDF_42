@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 23:01:49 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/03 16:23:07 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/08 05:37:44 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_color(t_data *data)
 		data->change_color = 0;
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_clear_window(data->mlx, data->win);
-	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+	data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 	data->addr = mlx_get_data_addr(data->img,
 			&data->bits_per_pixel, &data->line_length, &data->endian);
 	ft_draw_map(data->point2, data->point2, data);
