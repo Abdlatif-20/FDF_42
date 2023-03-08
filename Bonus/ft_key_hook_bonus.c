@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:29:31 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/08 21:02:24 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:15:02 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	key_hook1(int keycode, t_data *data)
 
 int	key_hook(int keycode, t_data *data)
 {
-	printf("%d\n", keycode);
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 1)

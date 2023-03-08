@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 23:57:57 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/08 21:01:13 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/09 00:07:04 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 void	get_color(t_data *data, int z1, int z2)
 {
 	(void)z2;
-	if (z1 != 0)
+	if (z1 != 0 || z2 != 0)
 		data->color = 0x0085FF;
 	else
 		data->color = 0x00FFFFFF;
@@ -42,10 +42,10 @@ void	drawing_line1(t_point p1, t_point p2, t_data *data)
 		p2.x = (p2.x - p2.y) * cos(0.8);
 		p2.y = (p2.x + p2.y) * cos(0.8) - p2.z;
 	}
-	p1.x += 5120 / 4 - (15 * data->width / 2) + data->move_x;
-	p2.x += 5120 / 4 - (15 * data->width / 2) + data->move_x;
-	p1.y += 2880 / 4 - (15 * data->height / 2) + data->move_y;
-	p2.y += 2880 / 4 - (15 * data->height / 2) + data->move_y;
+	p1.x += 5120 / 4 - (20 * data->width / 2) + data->move_x;
+	p2.x += 5120 / 4 - (20 * data->width / 2) + data->move_x;
+	p1.y += 2880 / 4 - (20 * data->height / 2) + data->move_y;
+	p2.y += 2880 / 4 - (20 * data->height / 2) + data->move_y;
 	data->x = p1.x;
 	data->y = p1.y;
 	data->dx = p2.x - p1.x;
@@ -54,6 +54,8 @@ void	drawing_line1(t_point p1, t_point p2, t_data *data)
 		data->steps = abs(data->dx);
 	else
 		data->steps = abs(data->dy);
+	data->inc_x = (double)data->dx / (double)data->steps;
+	data->inc_y = (double)data->dy / (double)data->steps;
 }
 
 void	drawing_line(t_point p1, t_point p2, t_data *data)
@@ -66,13 +68,11 @@ void	drawing_line(t_point p1, t_point p2, t_data *data)
 		get_color(data, p1.z, p2.z);
 	p1.z = p1.z * data->zoom_z * 5;
 	p2.z = p2.z * data->zoom_z * 5;
-	p1.x *= 15 * data->zoom;
-	p2.x *= 15 * data->zoom;
-	p1.y *= 15 * data->zoom;
-	p2.y *= 15 * data->zoom;
+	p1.x *= 20 * data->zoom;
+	p2.x *= 20 * data->zoom;
+	p1.y *= 20 * data->zoom;
+	p2.y *= 20 * data->zoom;
 	drawing_line1(p1, p2, data);
-	data->inc_x = (double)data->dx / (double)data->steps;
-	data->inc_y = (double)data->dy / (double)data->steps;
 	i = 0;
 	while (i < data->steps)
 	{
@@ -82,5 +82,34 @@ void	drawing_line(t_point p1, t_point p2, t_data *data)
 		data->x += data->inc_x;
 		data->y += data->inc_y;
 		i++;
+	}
+}
+
+void	ft_draw_map(t_point p1, t_point p2, t_data *data)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < data->width)
+	{
+		j = -1;
+		while (++j < data->height)
+		{
+			p1.x = i;
+			p1.y = j;
+			if (j < data->height - 1)
+			{
+				p2.x = i;
+				p2.y = j + 1;
+				drawing_line(p1, p2, data);
+			}
+			if (i < data->width - 1)
+			{
+				p2.x = i + 1;
+				p2.y = j;
+				drawing_line(p1, p2, data);
+			}
+		}
 	}
 }

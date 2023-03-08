@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 02:45:14 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/08 21:09:09 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/09 00:07:46 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	main(int ac, char **av)
 	ft_initialized(&data);
 	data.tab = map_allocate(av[1], fd, &data);
 	fill_map(av[1], fd, data.tab);
-	printf("width = %d, height = %d\n", data.width, data.height);
 	ft_draw_map(data.point1, data.point1, &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_hook(data.win, 2, 0, key_hook, &data);
