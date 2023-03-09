@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:56:36 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/08 23:18:17 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/09 01:30:38 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 

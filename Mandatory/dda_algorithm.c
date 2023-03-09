@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 23:57:57 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/09 00:07:04 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/09 02:05:44 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	drawing_line1(t_point p1, t_point p2, t_data *data)
 		p2.x = (p2.x - p2.y) * cos(0.8);
 		p2.y = (p2.x + p2.y) * cos(0.8) - p2.z;
 	}
-	p1.x += 5120 / 4 - (20 * data->width / 2) + data->move_x;
-	p2.x += 5120 / 4 - (20 * data->width / 2) + data->move_x;
-	p1.y += 2880 / 4 - (20 * data->height / 2) + data->move_y;
-	p2.y += 2880 / 4 - (20 * data->height / 2) + data->move_y;
+	p1.x += 5120 / 4 - (10 * data->width / 2) + data->move_x;
+	p2.x += 5120 / 4 - (10 * data->width / 2) + data->move_x;
+	p1.y += 2880 / 4 - (10 * data->height / 2) + data->move_y;
+	p2.y += 2880 / 4 - (10 * data->height / 2) + data->move_y;
 	data->x = p1.x;
 	data->y = p1.y;
 	data->dx = p2.x - p1.x;

@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 19:50:53 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/08 19:22:38 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:54:05 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	check_lenght_of_map(int fd, t_data	*data)
 	char	*str;
 
 	str = get_next_line(fd);
+	if (!str)
+		return (ft_putendl_fd("Found empty Map.", 2), exit(1));
 	if (str[0] == '\n')
 		return (ft_putendl_fd("Found empty line.", 2), exit(1));
 	len = str_length(str);
@@ -87,6 +89,7 @@ void	ft_check_map_is_valid(char **av, int fd, t_data *data)
 {
 	int		i;
 
+	(void)(data);
 	i = 0;
 	check_name_of_map(av[1], ".fdf");
 	fd = open(av[1], O_RDONLY, 777);
