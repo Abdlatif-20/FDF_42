@@ -6,12 +6,18 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 01:23:23 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/08 23:43:32 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:22:00 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "../Bonus/fdf_bonus.h"
+#include "../fdf.h"
+
+void	print_keycode_event(int keycode)
+{
+	ft_putstr_fd("keycode - event = ", 1);
+	ft_putnbr(keycode);
+	ft_putchar_fd('\n', 1);
+}
 
 void	fill_map(char *av, int fd, int **map)
 {

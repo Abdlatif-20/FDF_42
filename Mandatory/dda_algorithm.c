@@ -6,11 +6,11 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 23:57:57 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/09 02:05:44 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:19:48 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -22,7 +22,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void	get_color(t_data *data, int z1, int z2)
 {
-	(void)z2;
 	if (z1 != 0 || z2 != 0)
 		data->color = 0x0085FF;
 	else

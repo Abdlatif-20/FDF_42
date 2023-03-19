@@ -6,21 +6,21 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:33:16 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/08 21:08:00 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:21:55 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 void	ft_initialized(t_data *data)
 {
 	data->zoom = 1;
-	data->color = 16777215;
+	data->color = 0x00FFFFFF;
 	data->zoom_z = 1;
 	data->change_color = 0;
 	data->flag_projection = 0;
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, 5120 / 2, 2880 / 2, "fdf");
+	data->win = mlx_new_window(data->mlx, 5120 / 2, 2880 / 2, "fdf Mandatory");
 	data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
@@ -28,8 +28,11 @@ void	ft_initialized(t_data *data)
 
 int	keyhook(int keycode)
 {
-	if (keycode == 53)
+	if (keycode == ESC)
+	{
+		print_keycode_event(keycode);
 		exit(0);
+	}
 	return (0);
 }
 
@@ -40,12 +43,12 @@ int	**map_allocate(char *av, int fd, t_data *data)
 
 	fd = open(av, O_RDONLY, 777);
 	i = 0;
-	tab = (int **)ft_calloc(sizeof(int *), data->height + 1);
+	tab = (int **)ft_calloc(sizeof(int *), data->height);
 	if (!tab)
 		return (0);
 	while (i < data->height)
 	{
-		tab[i] = (int *)ft_calloc(sizeof(int), data->width + 1);
+		tab[i] = (int *)ft_calloc(sizeof(int), data->width);
 		if (!tab[i])
 			return (0);
 		i++;

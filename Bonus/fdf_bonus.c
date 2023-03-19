@@ -6,18 +6,18 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 02:45:14 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/09 02:03:33 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:20:13 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "../fdf.h"
 
 void	ft_initialized(t_data *data)
 {
 	data->zoom = 1;
 	data->move_x = 0;
 	data->move_y = 0;
-	data->color = 16777215;
+	data->color = 0x00FFFFFF;
 	data->zoom_z = 1;
 	data->change_color = 0;
 	data->flag_projection = 0;
@@ -27,7 +27,7 @@ void	ft_initialized(t_data *data)
 	data->angle_y = 0;
 	data->speed_up = 1.0;
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, 5120 / 2, 2880 / 2, "fdf");
+	data->win = mlx_new_window(data->mlx, 5120 / 2, 2880 / 2, "fdf bonus");
 	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);

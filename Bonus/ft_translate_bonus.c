@@ -6,15 +6,15 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:47:27 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/08 05:40:11 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:21:27 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "../fdf.h"
 
 void	ft_translate1(int keycode, t_data *data)
 {
-	if (keycode == 123 || keycode == 0)
+	if (keycode == LEFT || keycode == A_LEFT)
 	{
 		data->move_x -= 10 * data->speed_up;
 		mlx_destroy_image(data->mlx, data->img);
@@ -25,7 +25,7 @@ void	ft_translate1(int keycode, t_data *data)
 		ft_draw_map(data->point2, data->point2, data);
 		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	}
-	else if (keycode == 124 || keycode == 2)
+	else if (keycode == RIGHT || keycode == D_RIGHT)
 	{
 		data->move_x += 10 * data->speed_up;
 		mlx_destroy_image(data->mlx, data->img);
@@ -40,7 +40,7 @@ void	ft_translate1(int keycode, t_data *data)
 
 void	ft_translate(int keycode, t_data *data)
 {
-	if (keycode == 126 || keycode == 13)
+	if (keycode == UP || keycode == W_UP)
 	{
 		data->move_y -= 10 * data->speed_up;
 		mlx_destroy_image(data->mlx, data->img);
@@ -51,7 +51,7 @@ void	ft_translate(int keycode, t_data *data)
 		ft_draw_map(data->point2, data->point2, data);
 		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	}
-	else if (keycode == 125 || keycode == 6)
+	else if (keycode == DOWN || keycode == Z_DOWN)
 	{
 		data->move_y += 10 * data->speed_up;
 		mlx_destroy_image(data->mlx, data->img);

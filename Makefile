@@ -6,7 +6,7 @@
 #    By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:28:31 by aben-nei          #+#    #+#              #
-#    Updated: 2023/03/09 01:26:22 by aben-nei         ###   ########.fr        #
+#    Updated: 2023/03/19 18:24:49 by aben-nei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,17 +15,20 @@ NAME_BNS = fdf_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Ofast
 RM = rm -f
-HDR = Mandatory/fdf.h Bonus/fdf_bonus.h
-SRC = Mandatory/fdf.c Mandatory/utils.c Mandatory/parsing.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-	Bonus/ft_rotate_x_bonus.c Bonus/ft_rotate_y_bonus.c Mandatory/dda_algorithm.c  libft/ft_strlen.c libft/ft_strncmp.c \
-	libft/ft_atoi.c libft/ft_calloc.c libft/ft_strdup.c libft/ft_split.c libft/ft_putchar_fd.c \
-	libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_strlcpy.c libft/ft_substr.c libft/ft_bzero.c libft/ft_memset.c
+HDR = fdf.h
+GNL = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+LIB = libft/
+M = Mandatory/
+B = Bonus/
+SRC = $(M)fdf.c $(M)utils.c $(M)parsing.c $(GNL) $(B)ft_rotate_x_bonus.c $(B)ft_rotate_y_bonus.c $(M)dda_algorithm.c $(LIB)ft_strlen.c \
+	$(LIB)ft_strncmp.c $(LIB)ft_atoi.c $(LIB)ft_calloc.c $(LIB)ft_strdup.c $(LIB)ft_split.c $(LIB)ft_putchar_fd.c $(LIB)ft_putstr_fd.c \
+	$(LIB)ft_putendl_fd.c $(LIB)ft_strlcpy.c $(LIB)ft_substr.c $(LIB)ft_bzero.c $(LIB)ft_memset.c $(LIB)ft_putnbr.c
 
-SRC_BNS = Bonus/fdf_bonus.c Mandatory/utils.c Mandatory/parsing.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-	Bonus/ft_rotate_x_bonus.c Bonus/ft_rotate_y_bonus.c Bonus/ft_key_hook_bonus.c Bonus/mouse_hooks_bonus.c Bonus/ft_translate_bonus.c \
-	Bonus/ft_zoom_in_out_bonus.c Bonus/ft_reset.c Bonus/ft_color.c Mandatory/dda_algorithm.c libft/ft_strlen.c libft/ft_strncmp.c libft/ft_atoi.c \
-	libft/ft_calloc.c libft/ft_strdup.c libft/ft_split.c libft/ft_putchar_fd.c libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_strlcpy.c \
-	libft/ft_substr.c libft/ft_bzero.c libft/ft_memset.c
+SRC_BNS = $(B)fdf_bonus.c $(M)utils.c $(M)parsing.c $(GNL) $(B)ft_rotate_x_bonus.c $(B)ft_rotate_y_bonus.c $(B)ft_key_hook_bonus.c \
+	$(B)mouse_hooks_bonus.c $(B)ft_translate_bonus.c $(B)ft_zoom_in_out_bonus.c $(B)ft_reset.c $(B)ft_color.c $(M)dda_algorithm.c \
+	$(LIB)ft_strlen.c $(LIB)ft_strncmp.c $(LIB)ft_atoi.c $(LIB)ft_calloc.c $(LIB)ft_strdup.c $(LIB)ft_split.c $(LIB)ft_putchar_fd.c \
+	$(LIB)ft_putstr_fd.c $(LIB)ft_putendl_fd.c $(LIB)ft_strlcpy.c $(LIB)ft_substr.c $(LIB)ft_bzero.c $(LIB)ft_memset.c $(LIB)ft_putnbr.c
+
 OBJ = $(SRC:.c=.o)
 OBJ_BNS = $(SRC_BNS:.c=.o)
 LIBFT = libft/libft.a
