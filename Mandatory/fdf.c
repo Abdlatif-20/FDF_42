@@ -6,15 +6,17 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:33:16 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/19 18:21:55 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/29 00:07:15 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	ft_initialized(t_data *data)
+static void	ft_initialized(t_data *data)
 {
 	data->zoom = 1;
+	data->move_x = 0;
+	data->move_y = 0;
 	data->color = 0x00FFFFFF;
 	data->zoom_z = 1;
 	data->change_color = 0;
@@ -36,26 +38,6 @@ int	keyhook(int keycode)
 	return (0);
 }
 
-int	**map_allocate(char *av, int fd, t_data *data)
-{
-	int		**tab;
-	int		i;
-
-	fd = open(av, O_RDONLY, 777);
-	i = 0;
-	tab = (int **)ft_calloc(sizeof(int *), data->height);
-	if (!tab)
-		return (0);
-	while (i < data->height)
-	{
-		tab[i] = (int *)ft_calloc(sizeof(int), data->width);
-		if (!tab[i])
-			return (0);
-		i++;
-	}
-	return (close(fd), tab);
-}
-
 int	main(int ac, char **av)
 {
 	int		fd;
@@ -66,9 +48,9 @@ int	main(int ac, char **av)
 	fd = 0;
 	ft_check_map_is_valid(av, fd, &data);
 	ft_initialized(&data);
-	data.tab = map_allocate(av[1], fd, &data);
+	data.tab = map_allocate(&data);
 	fill_map(av[1], fd, data.tab);
-	ft_draw_map(data.point1, data.point1, &data);
+	ft_draw_map(data.point1, data.point2, &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_hook(data.win, 2, 0, keyhook, &data);
 	mlx_hook(data.win, 17, 0, ft_close, &data);

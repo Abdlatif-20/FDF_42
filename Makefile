@@ -6,7 +6,7 @@
 #    By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:28:31 by aben-nei          #+#    #+#              #
-#    Updated: 2023/03/19 18:24:49 by aben-nei         ###   ########.fr        #
+#    Updated: 2023/03/29 00:02:14 by aben-nei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ fclean: clean
 
 clean:
 	@$(RM) $(OBJ) $(OBJ_BNS)
+	@echo "\033[1;31mDeleting\033[0m" Object files "\033[1;31m...\033[0m"
 
 re: fclean all bonus
 

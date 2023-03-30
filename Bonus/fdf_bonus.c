@@ -6,13 +6,13 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 02:45:14 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/19 18:20:13 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:23:07 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	ft_initialized(t_data *data)
+static void	ft_initialized(t_data *data)
 {
 	data->zoom = 1;
 	data->move_x = 0;
@@ -28,29 +28,9 @@ void	ft_initialized(t_data *data)
 	data->speed_up = 1.0;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, 5120 / 2, 2880 / 2, "fdf bonus");
-	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+	data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
-}
-
-int	**map_allocate(char *av, int fd, t_data *data)
-{
-	int		**tab;
-	int		i;
-
-	fd = open(av, O_RDONLY, 777);
-	i = 0;
-	tab = (int **)ft_calloc(sizeof(int *), data->height);
-	if (!tab)
-		return (0);
-	while (i < data->height)
-	{
-		tab[i] = (int *)ft_calloc(sizeof(int), data->width);
-		if (!tab[i])
-			return (0);
-		i++;
-	}
-	return (close(fd), tab);
 }
 
 int	main(int ac, char **av)
@@ -63,9 +43,9 @@ int	main(int ac, char **av)
 	fd = 0;
 	ft_check_map_is_valid(av, fd, &data);
 	ft_initialized(&data);
-	data.tab = map_allocate(av[1], fd, &data);
+	data.tab = map_allocate(&data);
 	fill_map(av[1], fd, data.tab);
-	ft_draw_map(data.point1, data.point1, &data);
+	ft_draw_map(data.point1, data.point2, &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_hook(data.win, 2, 0, key_hook, &data);
 	mlx_mouse_hook(data.win, mouse_hook, &data);

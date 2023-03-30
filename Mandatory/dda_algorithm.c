@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 23:57:57 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/19 18:19:48 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/29 00:53:43 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ void	drawing_line(t_point p1, t_point p2, t_data *data)
 	p2.z = data->tab[p2.y][p2.x];
 	if (data->change_color == 1)
 		get_color(data, p1.z, p2.z);
-	p1.z = p1.z * data->zoom_z * 5;
-	p2.z = p2.z * data->zoom_z * 5;
-	p1.x *= 20 * data->zoom;
-	p2.x *= 20 * data->zoom;
-	p1.y *= 20 * data->zoom;
-	p2.y *= 20 * data->zoom;
+	p1.z *= data->zoom_z * 5;
+	p2.z *= data->zoom_z * 5;
+	p1.x *= 10 * data->zoom;
+	p2.x *= 10 * data->zoom;
+	p1.y *= 10 * data->zoom;
+	p2.y *= 10 * data->zoom;
 	drawing_line1(p1, p2, data);
 	i = 0;
 	while (i < data->steps)

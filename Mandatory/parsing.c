@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 19:50:53 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/19 18:21:58 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:13:06 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	check_lenght_of_map(int fd, t_data	*data)
 	if (!str || str[0] == '\n')
 		return (ft_putendl_fd("Found empty Map or wrong line.", 2), exit(1));
 	len[2] = str_length(str);
-	free(str);
 	len[0] = len_new_line(str);
+	free(str);
 	str = get_next_line(fd);
 	height = 1;
 	while (str && ++height)

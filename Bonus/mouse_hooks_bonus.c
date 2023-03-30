@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:31:38 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/19 18:21:46 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/29 00:11:06 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	mouse_hook1(int event, t_data *data)
 		data->move_x += 10 * data->speed_up;
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_clear_window(data->mlx, data->win);
-		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+		data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 				&data->line_length, &data->endian);
 		ft_draw_map(data->point2, data->point2, data);
@@ -30,7 +30,7 @@ void	mouse_hook1(int event, t_data *data)
 		data->move_x -= 10 * data->speed_up;
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_clear_window(data->mlx, data->win);
-		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+		data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 				&data->line_length, &data->endian);
 		ft_draw_map(data->point2, data->point2, data);
@@ -43,7 +43,7 @@ void	mouse_up(t_data *data)
 	data->move_y -= 10 * data->speed_up;
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_clear_window(data->mlx, data->win);
-	data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+	data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	ft_draw_map(data->point2, data->point2, data);
@@ -62,7 +62,7 @@ int	mouse_hook(int event, int x, int y, t_data *data)
 		data->move_y += 10 * data->speed_up;
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_clear_window(data->mlx, data->win);
-		data->img = mlx_new_image(&data, 5120 / 2, 2880 / 2);
+		data->img = mlx_new_image(data->mlx, 5120 / 2, 2880 / 2);
 		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 				&data->line_length, &data->endian);
 		ft_draw_map(data->point2, data->point2, data);

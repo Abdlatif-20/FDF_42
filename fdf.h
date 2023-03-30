@@ -6,7 +6,7 @@
 /*   By: aben-nei <aben-nei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:31:02 by aben-nei          #+#    #+#             */
-/*   Updated: 2023/03/19 18:25:53 by aben-nei         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:33:24 by aben-nei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdio.h>
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 
@@ -89,6 +90,7 @@ typedef struct s_data {
 }				t_data;
 
 void	ft_check_map_is_valid(char **av, int fd, t_data *data);
+int		**map_allocate(t_data *data);
 void	fill_map(char *av, int fd, int **map);
 int		str_length(char *str);
 void	drawing_line(t_point p1, t_point p2, t_data *data);
