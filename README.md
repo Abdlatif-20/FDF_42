@@ -9,6 +9,8 @@ The program can be build with a simple `make` to make a mandatory part
 
 And `make bonus` to make a bonus part
 
+after compiling a files you can run program with `./fdf <map>` Or `./fdf_bonus <map>`
+
 ## Examples
 
 ### Simple example of functionality
